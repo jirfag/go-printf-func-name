@@ -1,0 +1,1 @@
+# go-printf-func-name
