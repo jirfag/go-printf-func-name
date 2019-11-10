@@ -26,6 +26,10 @@ func run(pass *analysis.Pass) (interface{}, error) {
 	inspector.Preorder(nodeFilter, func(node ast.Node) {
 		funcDecl := node.(*ast.FuncDecl)
 
+		if res := funcDecl.Type.Results; res != nil && len(res.List) != 0 {
+			return
+		}
+
 		params := funcDecl.Type.Params.List
 		if len(params) < 2 { // [0] must be format (string), [1] must be args (...interface{})
 			return
@@ -37,6 +41,10 @@ func run(pass *analysis.Pass) (interface{}, error) {
 		}
 
 		if formatParamType.Name != "string" { // first param (format) type is not string
+			return
+		}
+
+		if formatParamNames := params[len(params)-2].Names; len(formatParamNames) == 0 || formatParamNames[len(formatParamNames)-1].Name != "format" {
 			return
 		}
 
