@@ -66,7 +66,7 @@ func run(pass *analysis.Pass) (interface{}, error) {
 			return
 		}
 
-		pass.Reportf(node.Pos(), "printf-like formatting function '%s' should be named '%sf'\n",
+		pass.Reportf(node.Pos(), "printf-like formatting function '%s' should be named '%sf'",
 			funcDecl.Name.Name, funcDecl.Name.Name)
 	})
 
