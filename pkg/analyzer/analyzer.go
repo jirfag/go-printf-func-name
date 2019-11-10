@@ -11,7 +11,7 @@ import (
 )
 
 var Analyzer = &analysis.Analyzer{
-	Name:     "go_printf_func_name",
+	Name:     "goprintffuncname",
 	Doc:      "Checks that printf-like functions are named with `f` at the end.",
 	Run:      run,
 	Requires: []*analysis.Analyzer{inspect.Analyzer},
